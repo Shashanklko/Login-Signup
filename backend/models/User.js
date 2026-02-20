@@ -1,30 +1,27 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const mongoose = require('mongoose');
 
-// User model — stores registered user accounts
-const User = sequelize.define('User', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
+const userSchema = new mongoose.Schema({
     username: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: String,
+        required: true,
         unique: true,
+        trim: true,
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: String,
+        required: true,
         unique: true,
-        validate: {
-            isEmail: true,
-        },
+        lowercase: true,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: String,
+        required: true,
     },
+}, {
+    timestamps: true,
 });
+
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
