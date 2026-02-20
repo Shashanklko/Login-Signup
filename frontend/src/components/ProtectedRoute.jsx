@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/authprotected";
-import "./protected.css";
+import { useAuth } from "../context/AuthContext";
+import "./ProtectedRoute.css";
 
 // Protects routes — redirects to login if not authenticated
 export const ProtectedRoute = ({ children }) => {

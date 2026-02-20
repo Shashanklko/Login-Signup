@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider, useAuth } from "./context/authprotected";
-import { ProtectedRoute } from "./Component/protected";
-import Login from "./Component/login";
-import Signup from "./Component/signup";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import './App.css';
 
 // Dashboard — shown after successful login
