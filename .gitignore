@@ -64,3 +64,4 @@ Thumbs.db
 .parcel-cache/
 .next/
 .nuxt/
+.vercel

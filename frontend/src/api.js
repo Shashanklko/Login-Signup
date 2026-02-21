@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Centralized axios instance with base URL for all API calls
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
 });
 
 // Attach JWT token to every outgoing request automatically
