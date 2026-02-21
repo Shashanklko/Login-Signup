@@ -7,10 +7,16 @@ exports.register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        // Check if user already exists
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(409).json({ message: 'User already exists' });
+        // Check if email already exists
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return res.status(409).json({ message: 'Email is already in use' });
+        }
+
+        // Check if username already exists
+        const existingUsername = await User.findOne({ username });
+        if (existingUsername) {
+            return res.status(409).json({ message: 'Username is already taken' });
         }
 
         // Hash password before storing
@@ -28,7 +34,8 @@ exports.register = async (req, res) => {
             user: { id: newUser._id, username: newUser.username, email: newUser.email }
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        console.error('Registration Error:', error);
+        res.status(500).json({ message: 'Registration failed during database operation', error: error.message });
     }
 };
 
