@@ -13,6 +13,10 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
+    if (!process.env.MONGO_URI) {
+      throw new Error('Please define the MONGO_URI environment variable inside .env');
+    }
+
     const opts = {
       bufferCommands: false,
     };
