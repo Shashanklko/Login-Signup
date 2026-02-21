@@ -19,11 +19,13 @@
             "dest": "api/index.js"
         },
         {
-            "handle": "filesystem"
+            "src": "/(.*)",
+            "dest": "/frontend/$1",
+            "check": true
         },
         {
             "src": "/(.*)",
-            "dest": "/index.html"
+            "dest": "/frontend/index.html"
         }
     ]
 }
